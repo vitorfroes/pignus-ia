@@ -17,10 +17,7 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized
 import flask
 from flask import request, jsonify
 
-def detect(source, save_img=False):
-    # Set Dataloader
-    vid_path, vid_writer = None, None
-
+def detect(source):
     save_img = True
     dataset = LoadImages(source, img_size=imgsz)
 
@@ -73,7 +70,7 @@ def detect(source, save_img=False):
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
                     if save_img or view_img:  # Add bbox to image
-                        label = '%s %.2f' % (names[int(cls)], conf)
+                        label = '%s %.2f' % ('Arma', conf)
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
 
                     percentage = conf.item()
